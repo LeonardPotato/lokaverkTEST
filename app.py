@@ -1,5 +1,6 @@
 import sqlite3
 from bottle import route, run, debug, template, request, static_file, error
+import os
 
 # only needed when you run Bottle on mod_wsgi
 from bottle import default_app
@@ -111,8 +112,4 @@ def mistake403(code):
 def mistake404(code):
     return 'Sorry, this page does not exist!'
 
-
-debug(True)
-run(reloader=True)
-# remember to remove reloader=True and debug(True) when you move your
-# application from development to a productive environment
+run(app = my_session, host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
